@@ -1,2 +1,2 @@
 # SpringMVCDemo
-This is a demo projest on Spring MVC
+This is a demo project on Spring MVC
