@@ -1,23 +1,36 @@
-# Compiled class file
-*.class
+##### All the files/folders present with below patterns will be ignored by GIT   #####
 
-# Log file
-*.log
-
-# BlueJ files
-*.ctxt
-
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
+##---- Package Files 
 *.jar
 *.war
-*.nar
 *.ear
-*.zip
-*.tar.gz
-*.rar
 
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+
+##---- Maven build artifact repo
+target
+
+
+##---- build folder
+build
+
+
+##---- Temp folder
+RemoteSystemsTempFiles
+
+
+##---- Eclipse specific files
+*.classpath
+##*.project
+*.settings
+*.metadata
+
+
+##---- Eclipse specific files
+/.classpath
+/*/.classpath
+##/./.project
+/*/.classpath
+/.classpath
+/*.*/.classpath
+##/.project
+
