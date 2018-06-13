@@ -13,14 +13,27 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.demo.model.Account;
 
 @Controller // to indicate that this class is a controller
+@SessionAttributes("aNewAccount")
 public class MyDemoController {
 
 	private String[] quotes = {"To be or not to be - Shakespeare", "Spring is nature's way of saying Let's Party - Robin Williams", "The time is always right to do what is right - Martin Luther King, Jr."}; 
+	
+	@ModelAttribute
+	public void addAccountToModel(Model model) {
+		
+		System.out.println("Making sure account object is on the model");
+		if(!model.containsAttribute("aNewAccount")) {
+			Account a = new Account();
+			model.addAttribute("aNewAccount", a);
+		}
+	}
+	
 	
 	@RequestMapping(value="/getQuote", method = RequestMethod.GET )
 	public String getRandomQuote(Model model) {
@@ -80,7 +93,7 @@ public class MyDemoController {
 	@RequestMapping(value="/accConfirm")
 	public String accountConfirmation(@ModelAttribute ("aNewAccount") Account account) {
 		
-		System.out.println("Account confirmed " + account.getFirstName());
+		System.out.println("Account confirmed " + account.getFirstName() + account.getLastName());
 		return "accountConfirmed";
 	}
 	
