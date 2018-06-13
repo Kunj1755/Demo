@@ -19,7 +19,7 @@
 </head>
 <body>
 	<h1>Enter Account details</h1>
-	<form:form commandName="aNewAccount" method="post" action="accountCreated">
+	<form:form commandName="aNewAccount" method="POST" action="doCreate">
 	
 		<table>
 		

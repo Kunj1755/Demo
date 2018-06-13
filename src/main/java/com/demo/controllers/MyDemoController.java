@@ -33,7 +33,7 @@ public class MyDemoController {
 		
 	}*/
 	
-	/*@RequestMapping(value="/createAccount")
+	@RequestMapping(value="/createAccount")
 	public String createAccount( @Valid @ModelAttribute("aNewAccount") Account account,
 								BindingResult result) {
 		if(result.hasErrors()) {
@@ -43,7 +43,26 @@ public class MyDemoController {
 		System.out.println("Form validated");
 		System.out.println(account.getFirstName());
 		return "createAccount";
-	}*/
+	}
+	
+	@RequestMapping("/doCreate")
+	public String doCreate(@ModelAttribute ("aNewAccount") Account account) {
+	
+		System.out.println("Do Create : " + account.getFirstName());
+		return "redirect:accConfirm";
+	}
+		
+	/* if we refresh the "http://localhost:8080/SpringMVCDemo/doCreate" url (without redirect), the same request is being sent every time creating duplications
+	   The solution is the below method
+	*/
+	
+	@RequestMapping(value="/accConfirm")
+	public String accountConfirmation(@ModelAttribute ("aNewAccount") Account account) {
+		
+		System.out.println("Account confirmed " + account.getFirstName());
+		return "accountConfirmed";
+	}
+	
 	
 	/*@RequestMapping(value="/accountCreated", method=RequestMethod.POST)
 	public String performCreate(Account account) {
