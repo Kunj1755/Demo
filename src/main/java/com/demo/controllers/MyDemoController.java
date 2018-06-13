@@ -4,11 +4,14 @@ import java.io.FileOutputStream;
 import java.util.Random;
 
 import javax.servlet.annotation.MultipartConfig;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -24,7 +27,7 @@ public class MyDemoController {
 
 	private String[] quotes = {"To be or not to be - Shakespeare", "Spring is nature's way of saying Let's Party - Robin Williams", "The time is always right to do what is right - Martin Luther King, Jr."}; 
 	
-	@ModelAttribute
+	//@ModelAttribute
 	public void addAccountToModel(Model model) {
 		
 		System.out.println("Making sure account object is on the model");
@@ -129,5 +132,19 @@ public class MyDemoController {
 		return "operationComplete";
 	}
 	
+	@RequestMapping(value="/addCookie")
+	public String addCookie(HttpServletResponse response) {
+		
+		// Add a random cookie
+		response.addCookie(new Cookie("myRandomCookie", "aCookieIAdded"));
+		System.out.println("Cookie added");
+		return "demoPage";
+	}
+	
+	@RequestMapping("/getCookie")
+	public String getCookie(@CookieValue("myRandomCookie") String myCookie) {
+		System.out.println("cookie retrieved: " + myCookie);
+		return "demoPage";
+	}
 	
 }
