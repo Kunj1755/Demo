@@ -22,16 +22,37 @@ public class MyDemoController {
 
 	private String[] quotes = {"To be or not to be - Shakespeare", "Spring is nature's way of saying Let's Party - Robin Williams", "The time is always right to do what is right - Martin Luther King, Jr."}; 
 	
-	/*@RequestMapping(value="/getQuote", method = RequestMethod.GET )
+	@RequestMapping(value="/getQuote", method = RequestMethod.GET )
 	public String getRandomQuote(Model model) {
 			
 		 int rand = new Random().nextInt(quotes.length); 
 		 String randomQuote = quotes[rand]; 
 		
 		model.addAttribute("randomQuote", randomQuote);
+		System.out.println("Model updated with random quote");
 		return "quote"; // quote is a view name
 		
-	}*/
+	}
+	
+	// The only purpose of this method is to enhance the spring Model
+	// You cannot call this method from anywhere
+	@ModelAttribute // to run this method prior to any handler method in the class
+	public void setUserDetails(@RequestParam ("userName") String userName, Model model) {
+		model.addAttribute( "userName", userName);
+		//Simulate going off and retrieving role based on userName 
+		String userRole = "undefined";
+		if(userName.equals( "Andy")){
+			userRole = "Student";
+			} else if(userName.equals("John")){ 
+				userRole = "Teacher"; 
+				} else if(userName.equals("Allana")){
+					userRole = "Dean"; 
+					} 
+		model.addAttribute("userRole", userRole);
+		System.out.println("Model updated with user information."); 
+		}
+	
+	
 	
 	@RequestMapping(value="/createAccount")
 	public String createAccount( @Valid @ModelAttribute("aNewAccount") Account account,
