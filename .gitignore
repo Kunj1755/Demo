@@ -35,3 +35,7 @@ RemoteSystemsTempFiles
 ##/.project
 
 *.class
+/*.MF
+
+
+
