@@ -49,7 +49,7 @@ public class MyDemoController {
 	
 	// The only purpose of this method is to enhance the spring Model
 	// You cannot call this method from anywhere
-	@ModelAttribute // to run this method prior to any handler method in the class
+ //	@ModelAttribute // to run this method prior to any handler method in the class
 	public void setUserDetails(@RequestParam ("userName") String userName, Model model) {
 		model.addAttribute( "userName", userName);
 		//Simulate going off and retrieving role based on userName 
@@ -70,6 +70,7 @@ public class MyDemoController {
 	@RequestMapping(value="/createAccount")
 	public String createAccount( @Valid @ModelAttribute("aNewAccount") Account account,
 								BindingResult result) {
+		System.out.println("Inside createAccount()");
 		if(result.hasErrors()) {
 			System.out.println("Form has errors");
 			return "createAccount";
@@ -93,7 +94,7 @@ public class MyDemoController {
 	@RequestMapping(value="/accConfirm")
 	public String accountConfirmation(@ModelAttribute ("aNewAccount") Account account) {
 		
-		System.out.println("Account confirmed " + account.getFirstName() + account.getLastName());
+		System.out.println("Account confirmed in accountConfirmation() " + account.getFirstName() + " " + account.getLastName());
 		return "accountConfirmed";
 	}
 	
