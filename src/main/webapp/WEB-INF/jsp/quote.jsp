@@ -14,5 +14,9 @@
 <h1>User info: </h1>
 <p>${userName} is a ${userRole}</p>
 
+<h1> The user is : </h1>
+<p>${userName}</p>
+
+
 </body>
 </html>

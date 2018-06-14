@@ -38,19 +38,23 @@ public class MyDemoController {
 	}
 	
 	
-	//@RequestMapping(value="/getQuote", method = RequestMethod.GET )
+	@RequestMapping(value="/getQuote", method = RequestMethod.GET )
 	//@RequestMapping(value="/getQuote", params = "from", method = RequestMethod.GET )
 	//@RequestMapping(value="/getQuote", params = "!from", method = RequestMethod.GET )
 	//@RequestMapping(value="/getQuote", params = "from=kunj", method = RequestMethod.GET )
 	//@RequestMapping(value="/getQuote", headers = "X-API-KEY", method = RequestMethod.GET )
-	@RequestMapping(value="/getQuote", headers = "X-API-KEY=12345", method = RequestMethod.GET )
-	public String getRandomQuote(Model model) {
+	//@RequestMapping(value="/getQuote", headers = "X-API-KEY=12345", method = RequestMethod.GET )
+	public String getRandomQuote(@RequestParam("userName") String userName, Model model) {
 			
 		 int rand = new Random().nextInt(quotes.length); 
 		 String randomQuote = quotes[rand]; 
 		
 		model.addAttribute("randomQuote", randomQuote);
 		System.out.println("Model updated with random quote");
+		
+		System.out.println("UserName is : " + userName);
+		model.addAttribute("userName", userName);
+		
 		return "quote"; // quote is a view name
 		
 	}
