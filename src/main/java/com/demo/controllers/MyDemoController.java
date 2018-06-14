@@ -38,7 +38,10 @@ public class MyDemoController {
 	}
 	
 	
-	@RequestMapping(value="/getQuote", method = RequestMethod.GET )
+	//@RequestMapping(value="/getQuote", method = RequestMethod.GET )
+	//@RequestMapping(value="/getQuote", params = "from", method = RequestMethod.GET )
+	//@RequestMapping(value="/getQuote", params = "!from", method = RequestMethod.GET )
+	@RequestMapping(value="/getQuote", params = "from=kunj", method = RequestMethod.GET )
 	public String getRandomQuote(Model model) {
 			
 		 int rand = new Random().nextInt(quotes.length); 
